@@ -1,8 +1,7 @@
 import os
-import sys
 import time
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-sys.path.append(os.path.dirname(__file__))
+from src.download_video.merge_video_subtitles import merge_video_subtitles
+
 from yt_dlp import YoutubeDL
 from deep_translator import GoogleTranslator
 
@@ -113,7 +112,6 @@ def download_video_with_subtitles(url: str, output_dir: str = 'downloads') -> di
                 }
 
             # 合并视频和字幕
-            from src.download_video.merge_video_subtitles import merge_video_subtitles
             video_path = os.path.join(output_dir, f'f{video_id}.mp4')
             final_video_path = os.path.join(output_dir, f'f{video_id}_with_sub.mp4')
 
@@ -151,6 +149,6 @@ def download_video_with_subtitles(url: str, output_dir: str = 'downloads') -> di
 if __name__ == '__main__':
     # 示例用法
     url = 'https://www.youtube.com/watch?v=yFwV3Ra50e8' #input("请输入YouTube视频URL: ")
-    result = download_video_with_subtitles(url)
+    result = download_video_with_subtitles(url, 'downloads')
     print("\n下载结果:")
     print(result)
